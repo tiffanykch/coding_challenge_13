@@ -39,3 +39,16 @@ function removeEmployee(employee) {
 createEmployeeCard("Luana", "Student Assistant");
 createEmployeeCard("Zach", "Assignment Coordinator");
 createEmployeeCard("Amy", "Assistant Director of Occupancy");
+
+// TASK 3: CONVERTING NODELIST TO ARRAYS FOR BULK UPDATES
+
+// Selecting all employee cards
+const employeeCardNodeList = document.querySelectorAll(".employee-card");
+
+// Converting into array
+const employeeCardArray = Array.from(employeeCardNodeList);
+
+// Update employee card appearance
+employeeCardArray.forEach(card => {
+    card.style.border = "3px solid dodgerblue"
+});
