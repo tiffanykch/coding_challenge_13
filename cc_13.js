@@ -22,17 +22,13 @@ function createEmployeeCard(employeeName, position) {
     removeButton.textContent = "Remove Employee";
     employeeCard.appendChild(removeButton);
 
+    // TASK 4
     // Attach event listener to remove employee button
     removeButton.addEventListener("click", function() {
         removeEmployee(employeeCard);
     });
 
     employeeContainerId.appendChild(employeeCard);
-}
-
-// Create function to remove employee
-function removeEmployee(employee) {
-    employeeContainerId.removeChild(employee);
 }
 
 // Test Cases
@@ -52,3 +48,23 @@ const employeeCardArray = Array.from(employeeCardNodeList);
 employeeCardArray.forEach(card => {
     card.style.border = "3px solid dodgerblue"
 });
+
+// TASK 4: IMPLEMENTING REMOVAL OF EMPLOYEE CARDS WITH EVENT BUBBLING
+
+// Add functionality to remove employee button
+function removeEmployee(employee) {
+    employeeContainerId.removeChild(employee);
+}
+
+// Attach event listener to employeeContainer
+employeeContainerId.addEventListener("click", function() {
+    console.log("Employee section clicked!");
+})
+
+// Attach event listener to each employee card
+document.querySelectorAll(".employee-card").forEach(card => {
+    card.addEventListener("click", function(event) {
+        console.log("Employee card clicked!");
+        event.stopPropagation(); //Enable to prevent event bubbling
+    })
+})
