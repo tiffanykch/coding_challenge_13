@@ -28,6 +28,36 @@ function createEmployeeCard(employeeName, position) {
         removeEmployee(employeeCard);
     });
 
+    // TASK 5
+    // Add event listener to each employee card to allow editing
+    employeeCard.addEventListener("dblclick", function(event) {
+        console.log("yo");
+        
+        const clickedItem = event.target;
+        const clickedText = clickedItem.textContent;
+       
+        if (clickedItem.closest(".employee-card") && clickedItem.matches("p, h3")) {
+            const input = document.createElement("input");
+            input.setAttribute("value", clickedText);
+            clickedItem.replaceWith(input);  
+            
+            // Add save button
+            const saveButton = document.createElement("button");
+            saveButton.setAttribute("id", "saveButton");
+            saveButton.textContent = "Save";
+            input.insertAdjacentElement("afterend", saveButton);
+
+            saveButton.addEventListener("click", function() {
+                const inputText = input.value;
+                const replacedText = document.createElement(clickedItem.tagName.toLowerCase());
+
+                replacedText.textContent = inputText
+                input.replaceWith(replacedText);
+                saveButton.remove();
+            })
+        }
+    })
+
     employeeContainerId.appendChild(employeeCard);
 }
 
