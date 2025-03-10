@@ -31,11 +31,12 @@ function createEmployeeCard(employeeName, position) {
     // TASK 5
     // Add event listener to each employee card to allow editing
     employeeCard.addEventListener("dblclick", function(event) {
-        console.log("yo");
         
+        // Identify employee card selected based on user click
         const clickedItem = event.target;
         const clickedText = clickedItem.textContent;
-       
+
+        // Check if item clicked is text within employee card 
         if (clickedItem.closest(".employee-card") && clickedItem.matches("p, h3")) {
             const input = document.createElement("input");
             input.setAttribute("value", clickedText);
@@ -47,6 +48,7 @@ function createEmployeeCard(employeeName, position) {
             saveButton.textContent = "Save";
             input.insertAdjacentElement("afterend", saveButton);
 
+            // Giving functionality to save button
             saveButton.addEventListener("click", function() {
                 const inputText = input.value;
                 const replacedText = document.createElement(clickedItem.tagName.toLowerCase());
